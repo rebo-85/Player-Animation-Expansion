@@ -1,0 +1,32 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"controller.animation.rebo.player.punch": {
+			"initial_state": "rest.0",
+			"states": {
+				"rest.0": {
+					"transitions": [
+						{ "punch.right": "v.attack_time > 0.0" }
+					]
+				},
+				"punch.right": {
+					"animations": ["a.punch.right"],
+					"transitions": [
+						{ "rest.1": "q.all_animations_finished"}
+					]
+				},
+				"rest.1": {
+					"transitions": [
+						{ "punch.left": "v.attack_time > 0.0" }
+					]
+				},
+				"punch.left": {
+					"animations": ["a.punch.left"],
+					"transitions": [
+						{ "rest.0": "q.all_animations_finished"}
+					]
+				}
+			}
+		}
+	}
+}
