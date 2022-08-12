@@ -1,6 +1,17 @@
 {
-	"format_version": "1.19.0",
-	"animation_controllers": {
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.rebo.player.root": {
+		  "initial_state": "root",
+			"states" : {
+			  "root" : {
+				"animations": [
+					{"a.first_person.base_pose": "v.is_first_person"},
+					"ac.punch"
+				]
+			  }
+			}
+		  },
 		"controller.animation.rebo.player.punch": {
 			"initial_state": "rest.0",
 			"states": {
@@ -10,9 +21,12 @@
 					]
 				},
 				"punch.right": {
-					"animations": ["a.punch.right"],
+					"animations": [
+						{"a.punch.right": "!v.is_holding_right"}
+					],
+					"blend_transition": 0.2,
 					"transitions": [
-						{ "rest.1": "q.all_animations_finished"}
+						{ "rest.1": "q.all_animations_finished || v.is_holding_right"}
 					]
 				},
 				"rest.1": {
@@ -21,9 +35,12 @@
 					]
 				},
 				"punch.left": {
-					"animations": ["a.punch.left"],
+					"animations": [
+						{"a.punch.left": "!v.is_holding_left"}
+					],
+					"blend_transition": 0.2,
 					"transitions": [
-						{ "rest.0": "q.all_animations_finished"}
+						{ "rest.0": "q.all_animations_finished || v.is_holding_left"}
 					]
 				}
 			}

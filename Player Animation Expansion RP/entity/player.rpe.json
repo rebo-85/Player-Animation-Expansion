@@ -32,7 +32,6 @@
           "v.attack_time > 0.0 ? {v.did_punch = true;};",
           "v.attack_time == 0.0 && v.did_punch ? {v.punch == 'right' ? {v.punch = 'left';} : {v.punch = 'right';}; v.did_punch = false;};",
 
-          // "v.attack_time == 0.0 ? {v.punch = math.random_integer(1, 2);};",
 
 
 
@@ -51,14 +50,17 @@
           "v.item_use_normalized = q.main_hand_item_use_duration / q.main_hand_item_max_duration;"
         ],
         "animate": [
-          "root"
+          "root",
+          "ac.root"
         ]
       },
       "animations": {
-        "a.punch.right": "animation.rebo.punch.right",
-        "a.punch.left": "animation.rebo.punch.left",
+        "a.punch.right": "animation.rebo.player.punch.right",
+        "a.punch.left": "animation.rebo.player.punch.left",
+        "a.first_person.base_pose": "animation.rebo.player.first_person.base_pose",
 
         "ac.punch": "controller.animation.rebo.player.punch",
+        "ac.root": "controller.animation.rebo.player.root",
 
 
 
@@ -94,7 +96,6 @@
         "use_item_progress": "animation.humanoid.use_item_progress",
         "skeleton_attack": "animation.skeleton.attack",
         "sleeping": "animation.player.sleeping",
-        "first_person_base_pose": "animation.player.first_person.base_pose",
         "first_person_empty_hand": "animation.player.first_person.empty_hand",
         "first_person_swap_item": "animation.player.first_person.swap_item",
         "first_person_shield_block": "animation.player.first_person.shield_block",
@@ -117,7 +118,7 @@
         "blink": "controller.animation.persona.blink"
       },
       "render_controllers": [
-        { "controller.render.player.first_person": "v.is_first_person" },
+        { "controller.render.rebo.player.first_person": "v.is_first_person" },
         { "controller.render.player.third_person": "!v.is_first_person && !v.map_face_icon" },
         { "controller.render.player.map": "v.map_face_icon" }
       ],
