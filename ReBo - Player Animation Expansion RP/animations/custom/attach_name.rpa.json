@@ -1,0 +1,35 @@
+{
+    "format_version": "1.8.0",
+    "animations": {
+        "animation.attach_name.third_person.wield": {
+            "loop": true,
+            "bones": {
+                "main": {
+                    "position": [0, 21, 0]
+                }
+            }
+        },
+        "animation.attach_name.first_person.wield": {
+            "loop": true,
+            "bones": {
+                "main": {
+                    "rotation": [40.0, 65.0, -80.0],
+                    "position": [0, 21, 0]
+                }
+            }
+        },
+        "animation.attach_name.first_person.eat": {
+            "loop": true,
+            "animation_length": 0.25,
+            "bones": {
+                "main": {
+                    "rotation": [15.93348, -17.91379, -124.15053],
+                    "position": {
+                        "0.0": [-3, 22, -5],
+                        "0.25": [2, 26, -5]
+                    }
+                }
+            }
+        }
+    }
+}

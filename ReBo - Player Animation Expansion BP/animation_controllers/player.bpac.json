@@ -1,0 +1,113 @@
+{
+    "format_version": "1.19.0",
+    "animation_controllers": {
+        "controller.animation.player.item.bpi": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        { "on_equip": "q.is_item_name_any('slot.weapon.mainhand', 0, 'custom:bpi')" }
+                    ]
+                },
+                "on_equip":{
+                    "on_entry": ["/function custom/player/bpi/on_equip"],
+                    "transitions": [
+                        { "c_idle": "return true;" }
+                    ]
+                },
+                "on_unequip":{
+                    "on_entry": ["/function custom/player/bpi/on_unequip"],
+                    "transitions": [
+                        { "default": "return true;" }
+                    ]
+                },
+                "on_eat":{
+                    "on_entry": ["/function custom/player/bpi/on_eat"],
+                    "transitions": [
+                        { "c_idle": "!q.is_using_item" }
+                    ]
+                },
+                "c_idle":{
+                    "transitions": [
+                        { "lc_down": "v.attack_time > 0.0" },
+                        { "rc_down": "q.main_hand_item_use_duration > 0" },
+                        { "on_unequip": "!q.is_item_name_any('slot.weapon.mainhand', 0, 'custom:bpi')" }
+                    ]
+                },
+                "lc_down":{
+                    "on_entry": ["/function custom/player/bpi/lc_down"],
+                    "transitions": [
+                        { "c_idle": "v.attack_time == 0.0" }
+                    ]
+                },
+                "rc_down":{
+                    "on_entry": ["/function custom/player/bpi/rc_down"],
+                    "transitions": [
+                        { "rc_hold" : "q.is_using_item" },
+                        { "rc_up": "!q.is_using_item" }
+                    ]
+                },
+                "rc_hold":{
+                    "on_entry": ["/function custom/player/bpi/rc_hold"],
+                    "transitions": [
+                        { "rc_hold_loop" : "q.is_using_item" },
+                        { "rc_up": "!q.is_using_item" }
+                    ]
+                },
+                "rc_hold_loop":{
+                    "on_entry": ["/function custom/player/bpi/rc_hold"],
+                    "transitions": [
+                        { "rc_hold": "return true;" }
+                    ]
+                },
+                "rc_up":{
+                    "on_entry": ["/function custom/player/bpi/rc_up"],
+                    "transitions": [
+                        { "c_idle": "return true;" }
+                    ]
+                }
+            }
+        },
+        "controller.animation.player.variant": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "on_entry": ["/scoreboard players reset @s i-variant"],
+                    "transitions": [
+                        { "variant-0": "q.variant == 0" },
+                        { "variant-1": "q.variant == 1" }
+                    ]
+                },
+                "variant-0": {
+                    "on_entry": ["/scoreboard players set @s i-variant 0"],
+                    "transitions": [
+                        { "default": "q.variant != 0" }
+                    ]
+                },
+                "variant-1": {
+                    "on_entry": ["/scoreboard players set @s i-variant 1"],
+                    "transitions": [
+                        { "default": "q.variant != 0" }
+                    ]
+                }
+            }
+        },
+        "controller.animation.player.ignited": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "on_entry": ["/scoreboard players set @s b-ignited 0"],
+                    "transitions": [
+                        { "ignited": "q.is_ignited" }
+                    ]
+                },
+                "ignited": {
+                    "on_entry": ["/scoreboard players set @s b-ignited 1"],
+                    "transitions": [
+                        { "default": "!q.is_ignited" }
+                    ]
+                }
+            }
+        }
+    }
+}

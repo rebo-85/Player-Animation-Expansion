@@ -1,0 +1,1 @@
+function custom/set_gamerules

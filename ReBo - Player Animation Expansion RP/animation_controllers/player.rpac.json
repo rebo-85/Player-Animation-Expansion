@@ -1,0 +1,144 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.custom.player.root": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "animations": [ "ac.move", "a.look_at_target", "ac.sneak", "ac.punch"]
+                }
+            }
+        },
+        "controller.animation.custom.player.sneak": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        { "sneak": "q.is_sneaking"}
+                    ]
+                },
+                "sneak": {
+                    "animations": [
+                        "a.sneak"
+                    ],
+                    "transitions": [
+                        { "default": "!q.is_sneaking"}
+                    ]
+                }
+            }
+        },
+        "controller.animation.custom.player.punch": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        { "right": "v.attack_time > 0 && v.random_side == 'right'"},
+                        { "left": "v.attack_time > 0 && v.random_side == 'left'"}
+                    ]
+                },
+                "right": {
+                    "animations": [
+                        "a.punch.right"
+                    ],
+                    "blend_transition": 0.2,
+                    "transitions": [
+                        { "left": "q.all_animations_finished"},
+                        { "default": "!v.attack_time > 0"}
+                    ]
+                },
+                "left": {
+                    "animations": [
+                        "a.punch.left"
+                    ],
+                    "blend_transition": 0.2,
+                    "transitions": [
+                        { "right": "q.all_animations_finished"},
+                        { "default": "!v.attack_time > 0"}
+                    ]
+                }
+            }
+        },
+        "controller.animation.custom.player.move": {
+            "initial_state": "walk",
+            "states": {
+                "walk": {
+                    "animations": [
+                        "ac.move.walk"
+                    ],
+                    "transitions": [
+                        { "sprint": "q.is_sprinting"}
+                    ]
+                },
+                "sprint": {
+                    "animations": [
+                        "ac.move.sprint"
+                    ],
+                    "transitions": [
+                        { "walk": "!q.is_sprinting"}
+                    ]
+                }
+            }
+        },
+        "controller.animation.custom.player.move.walk": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        { "right": "q.is_moving && v.random_side == 'right'"},
+                        { "left": "q.is_moving && v.random_side == 'left'"}
+                    ]
+                },
+                "right": {
+                    "animations": [
+                        "a.walk.right"
+                    ],
+                    "blend_transition": 0.2,
+                    "transitions": [
+                        { "left": "q.all_animations_finished"},
+                        { "default": "!q.is_moving"}
+                    ]
+                },
+                "left": {
+                    "animations": [
+                        "a.walk.left"
+                    ],
+                    "blend_transition": 0.2,
+                    "transitions": [
+                        { "right": "q.all_animations_finished"},
+                        { "default": "!q.is_moving"}
+                    ]
+                }
+            }
+        },
+        "controller.animation.custom.player.move.sprint": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "blend_transition": 0.1,
+                    "transitions": [
+                        { "right": "q.is_moving && v.random_side == 'right'"},
+                        { "left": "q.is_moving && v.random_side == 'left'"}
+                    ]
+                },
+                "right": {
+                    "animations": [
+                        "a.sprint.right"
+                    ],
+                    "transitions": [
+                        { "left": "q.all_animations_finished"},
+                        { "default": "!q.is_moving"}
+                    ]
+                },
+                "left": {
+                    "animations": [
+                        "a.sprint.left"
+                    ],
+                        "transitions": [
+                        { "right": "q.all_animations_finished"},
+                        { "default": "!q.is_moving"}
+                    ]
+                }
+            }
+        }
+    }
+}
