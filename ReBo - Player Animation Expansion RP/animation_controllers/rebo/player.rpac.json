@@ -1,33 +1,113 @@
 {
     "format_version": "1.10.0",
     "animation_controllers": {
-        "controller.animation.custom.player.root": {
+        "controller.animation.rebo.player.root": {
             "initial_state": "default",
             "states": {
                 "default": {
-                    "animations": [ "ac.move", "a.look_at_target", "ac.sneak", "ac.punch"]
+                    "animations": [
+                        {"ac.move.ground": "q.is_on_ground"},
+                        "a.look_at_target",
+                        "ac.jump",
+                        "ac.sneak",
+                        "ac.punch"
+                    ]
                 }
             }
         },
-        "controller.animation.custom.player.sneak": {
+        "controller.animation.rebo.player.sneak": {
             "initial_state": "default",
             "states": {
                 "default": {
+                    "on_exit": [
+                        "v.sneak_side = v.random_side;"
+                    ],
+                    "blend_transition": 0.1,
                     "transitions": [
                         { "sneak": "q.is_sneaking"}
                     ]
                 },
                 "sneak": {
                     "animations": [
-                        "a.sneak"
+                        { "a.sneak.right": "v.sneak_side == 'right'" },
+                        { "a.sneak.left": "v.sneak_side == 'left'" }
                     ],
+                    "blend_transition": 0.1,
                     "transitions": [
                         { "default": "!q.is_sneaking"}
                     ]
                 }
             }
         },
-        "controller.animation.custom.player.punch": {
+        "controller.animation.rebo.player.idle": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "on_entry": [
+                        "v.idling_start_time = q.life_time;"
+                    ],
+                    "blend_transition": 0.1,
+                    "transitions": [
+                        { "idle": "v.idling_start_time + v.inactive_timer < q.life_time"}
+                    ]
+                },
+                "idle": {
+                   
+                    "blend_transition": 0.1,
+                    "transitions": [
+                        { "default": "q.is_moving || v.attack_time > 0"}
+                    ]
+                }
+            }
+        },
+        "controller.animation.rebo.player.jump": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "blend_transition": 0.2,
+                    "transitions": [
+                        { "lift": "q.is_jumping"},
+                        { "fall": "q.vertical_speed < 0"}
+                    ]
+                },
+                "lift": {
+                    "animations": [
+                        { "a.jump.lift.right": "v.jump_side == 'right'" },
+                        { "a.jump.lift.left": "v.jump_side == 'left'" }
+                    ],
+                    "blend_transition": 1.0,
+                    "transitions": [
+                        { "fall": "q.vertical_speed < 0"}
+                    ]
+                },
+                "fall": {
+                    "animations": [
+                        { "a.jump.fall.right": "v.jump_side == 'right'" },
+                        { "a.jump.fall.left": "v.jump_side == 'left'" }
+                    ],
+                    "blend_transition": 0.1,
+                    "transitions": [
+                        { "lift": "q.vertical_speed > 0"},
+                        { "land": "q.is_on_ground"}
+                    ]
+                },
+                "land": {
+                    "animations": [
+                        { "a.jump.land.right": "v.jump_side == 'right'" },
+                        { "a.jump.land.left": "v.jump_side == 'left'" }
+                    ],
+                    "blend_transition": 0.1,
+                    "on_exit": [
+                        "v.jump_side = v.random_side;"
+                    ],
+                    "transitions": [
+                        { "default": "q.all_animations_finished"},
+                        { "lift": "q.is_jumping"}
+                    ]
+                }
+            }
+        },
+        "controller.animation.rebo.player.punch": {
             "initial_state": "default",
             "states": {
                 "default": {
@@ -58,7 +138,7 @@
                 }
             }
         },
-        "controller.animation.custom.player.move": {
+        "controller.animation.rebo.player.move.ground": {
             "initial_state": "walk",
             "states": {
                 "walk": {
@@ -79,7 +159,7 @@
                 }
             }
         },
-        "controller.animation.custom.player.move.walk": {
+        "controller.animation.rebo.player.move.walk": {
             "initial_state": "default",
             "states": {
                 "default": {
@@ -110,7 +190,7 @@
                 }
             }
         },
-        "controller.animation.custom.player.move.sprint": {
+        "controller.animation.rebo.player.move.sprint": {
             "initial_state": "default",
             "states": {
                 "default": {

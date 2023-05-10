@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.custom.player.walk": {
+		"animation.rebo.player.walk": {
 			"animation_length": 1.5,
 			"bones": {
 				"root": {
@@ -86,7 +86,7 @@
 				}
 			}
 		},
-		"animation.custom.player.walk.right": {
+		"animation.rebo.player.walk.right": {
 			"animation_length": 0.5,
 			"bones": {
 				"root": {
@@ -161,7 +161,7 @@
 				}
 			}
 		},
-		"animation.custom.player.walk.left": {
+		"animation.rebo.player.walk.left": {
 			"animation_length": 0.5,
 			"bones": {
 				"root": {
@@ -236,7 +236,7 @@
 				}
 			}
 		},
-		"animation.custom.player.sprint.right": {
+		"animation.rebo.player.sprint.right": {
 			"animation_length": 0.25,
 			"bones": {
 				"root": {
@@ -303,7 +303,7 @@
 				}
 			}
 		},
-		"animation.custom.player.sprint.left": {
+		"animation.rebo.player.sprint.left": {
 			"animation_length": 0.25,
 			"bones": {
 				"root": {
@@ -370,17 +370,11 @@
 				}
 			}
 		},
-		"animation.custom.player.sneak": {
+		"animation.rebo.player.sneak.right": {
 			"loop": true,
 			"bones": {
 				"root": {
 					"position": [0, -7, 0]
-				},
-				"rightArm": {
-					"rotation": [-86.82195, -32.36121, 84.07764]
-				},
-				"rightArmLower": {
-					"rotation": [-45, 0, 0]
 				},
 				"leftLeg": {
 					"rotation": [-27.5, 0, 0]
@@ -402,14 +396,40 @@
 				}
 			}
 		},
-		"animation.custom.player.punch.right": {
+		"animation.rebo.player.sneak.left": {
+			"loop": true,
+			"bones": {
+				"root": {
+					"position": [0, -7, 0]
+				},
+				"rightLeg": {
+					"rotation": [-27.5, 0, 0]
+				},
+				"rightLegLower": {
+					"rotation": [102.5, 0, 0]
+				},
+				"leftLeg": {
+					"rotation": [-80, 0, 0]
+				},
+				"leftLegLower": {
+					"rotation": [77.5, 0, 0]
+				},
+				"torsoUpper": {
+					"rotation": [22.5, 0, 0]
+				},
+				"torsoLower": {
+					"rotation": [10, 0, 0]
+				}
+			}
+		},
+		"animation.rebo.player.punch.right": {
 			"animation_length": 0.375,
 			"bones": {
 				"rightArm": {
 					"rotation": {
 						"0.0": [0, 0, 0],
 						"0.125": [0, 0, 32.5],
-						"0.2083": [-45.72113, 14.60559, 68.81465]
+						"0.2083": [-45.72113, 14.60559, "68.8147 - q.target_x_rotation"]
 					}
 				},
 				"rightArmLower": {
@@ -422,7 +442,7 @@
 				"torsoUpper": {
 					"rotation": {
 						"0.0": [0, 0, 0],
-						"0.125": [15.34721, 12.06754, 3.28396],
+						"0.125": ["15.3472 + q.target_x_rotation", 12.06754, 3.28396],
 						"0.2083": [16.17354, -21.69365, -6.1191]
 					}
 				},
@@ -447,7 +467,7 @@
 				}
 			}
 		},
-		"animation.custom.player.punch.left": {
+		"animation.rebo.player.punch.left": {
 			"animation_length": 0.375,
 			"bones": {
 				"rightArm": {
@@ -465,7 +485,7 @@
 				"torsoUpper": {
 					"rotation": {
 						"0.0": [0, 0, 0],
-						"0.125": [15.91527, -19.291, -5.38152],
+						"0.125": ["15.9153 + q.target_x_rotation", -19.291, -5.38152],
 						"0.2083": [15.91527, 19.291, 5.38152]
 					}
 				},
@@ -480,7 +500,7 @@
 					"rotation": {
 						"0.0": [0, 0, 0],
 						"0.125": [0, 0, -32.5],
-						"0.2083": [-41.5123, -10.07026, -73.67505]
+						"0.2083": [-41.5123, -10.07026, "-73.675 + q.target_x_rotation"]
 					}
 				},
 				"leftArmLower": {
@@ -488,6 +508,392 @@
 						"0.0": [0, 0, 0],
 						"0.125": [-70, 0, 0],
 						"0.2083": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.rebo.player.jump.lift.right": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.33333,
+			"bones": {
+				"rightArm": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [0, 0, 17.5],
+						"0.3333": [0, 0, 115]
+					}
+				},
+				"rightArmLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [-37.5, 0, 0]
+					}
+				},
+				"torsoUpper": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [22.5, 0, 0]
+					}
+				},
+				"leftArm": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [0, 0, -17.5],
+						"0.3333": [0, 0, -115]
+					}
+				},
+				"leftArmLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [-37.5, 0, 0]
+					}
+				},
+				"root": {
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.1667": [0, -6, 0],
+						"0.3333": [0, 0, 0]
+					}
+				},
+				"leftLeg": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [-57.5, 0, 0]
+					}
+				},
+				"leftLegLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [82.5, 0, 0]
+					}
+				},
+				"rightLeg": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": {
+						"0.0": [0, 0, 0.01],
+						"0.1667": [-57.5, 0, 0],
+						"0.3333": [25, 0, 0]
+					}
+				},
+				"rightLegLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [82.5, 0, 0],
+						"0.3333": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.rebo.player.jump.lift.left": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.33333,
+			"bones": {
+				"rightArm": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [0, 0, 17.5],
+						"0.3333": [0, 0, 115]
+					}
+				},
+				"rightArmLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [-37.5, 0, 0]
+					}
+				},
+				"torsoUpper": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [22.5, 0, 0]
+					}
+				},
+				"leftArm": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [0, 0, -17.5],
+						"0.3333": [0, 0, -115]
+					}
+				},
+				"leftArmLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [-37.5, 0, 0]
+					}
+				},
+				"root": {
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.1667": [0, -6, 0],
+						"0.3333": [0, 0, 0]
+					}
+				},
+				"rightLeg": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [-57.5, 0, 0]
+					}
+				},
+				"rightLegLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [82.5, 0, 0]
+					}
+				},
+				"leftLeg": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": {
+						"0.0": [0, 0, 0.01],
+						"0.1667": [-57.5, 0, 0],
+						"0.3333": [25, 0, 0]
+					}
+				},
+				"leftLegLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [82.5, 0, 0],
+						"0.3333": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.rebo.player.jump.fall.right": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"rightArm": {
+					"rotation": [0, 0, 145]
+				},
+				"rightArmLower": {
+					"rotation": [-37.5, 0, 0]
+				},
+				"torsoUpper": {
+					"rotation": [22.5, 0, 0]
+				},
+				"leftArm": {
+					"rotation": [0, 0, -145]
+				},
+				"leftArmLower": {
+					"rotation": [-37.5, 0, 0]
+				},
+				"root": {
+					"position": [0, 0, 0]
+				},
+				"leftLeg": {
+					"rotation": [-57.5, 0, 0]
+				},
+				"leftLegLower": {
+					"rotation": [82.5, 0, 0]
+				},
+				"rightLeg": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": [-45, 0, 0]
+				},
+				"rightLegLower": {
+					"rotation": [0, 0, 0]
+				},
+				"torsoLower": {
+					"rotation": [-32.5, 0, 0]
+				}
+			}
+		},
+		"animation.rebo.player.jump.fall.left": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"rightArm": {
+					"rotation": [0, 0, 145]
+				},
+				"rightArmLower": {
+					"rotation": [-37.5, 0, 0]
+				},
+				"torsoUpper": {
+					"rotation": [22.5, 0, 0]
+				},
+				"leftArm": {
+					"rotation": [0, 0, -145]
+				},
+				"leftArmLower": {
+					"rotation": [-37.5, 0, 0]
+				},
+				"root": {
+					"position": [0, 0, 0]
+				},
+				"rightLeg": {
+					"rotation": [-57.5, 0, 0]
+				},
+				"rightLegLower": {
+					"rotation": [82.5, 0, 0]
+				},
+				"leftLeg": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": [-45, 0, 0]
+				},
+				"leftLegLower": {
+					"rotation": [0, 0, 0]
+				},
+				"torsoLower": {
+					"rotation": [-32.5, 0, 0]
+				}
+			}
+		},
+		"animation.rebo.player.jump.land.right": {
+			"animation_length": 0.32,
+			"bones": {
+				"rightArm": {
+					"rotation": {
+						"0.0": [0, 0, 145],
+						"0.18": [0, 0, 17.5],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"rightArmLower": {
+					"rotation": {
+						"0.0": [-37.5, 0, 0],
+						"0.18": [-37.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"torsoUpper": {
+					"rotation": {
+						"0.0": [22.5, 0, 0],
+						"0.18": [22.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"leftArm": {
+					"rotation": {
+						"0.0": [0, 0, -145],
+						"0.18": [0, 0, -17.5],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"leftArmLower": {
+					"rotation": {
+						"0.0": [-37.5, 0, 0],
+						"0.18": [-37.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"root": {
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.18": [0, -6, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"leftLeg": {
+					"rotation": {
+						"0.0": [-57.5, 0, 0],
+						"0.18": [-57.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"leftLegLower": {
+					"rotation": {
+						"0.0": [82.5, 0, 0],
+						"0.18": [82.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"rightLeg": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": {
+						"0.0": [-45, 0, 0],
+						"0.18": [-57.5, 0, 0],
+						"0.32": [0, 0, 0.01]
+					}
+				},
+				"rightLegLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.18": [82.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.rebo.player.jump.land.left": {
+			"animation_length": 0.32,
+			"bones": {
+				"rightArm": {
+					"rotation": {
+						"0.0": [0, 0, 145],
+						"0.18": [0, 0, 17.5],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"rightArmLower": {
+					"rotation": {
+						"0.0": [-37.5, 0, 0],
+						"0.18": [-37.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"torsoUpper": {
+					"rotation": {
+						"0.0": [22.5, 0, 0],
+						"0.18": [22.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"leftArm": {
+					"rotation": {
+						"0.0": [0, 0, -145],
+						"0.18": [0, 0, -17.5],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"leftArmLower": {
+					"rotation": {
+						"0.0": [-37.5, 0, 0],
+						"0.18": [-37.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"root": {
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.18": [0, -6, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"rightLeg": {
+					"rotation": {
+						"0.0": [-57.5, 0, 0],
+						"0.18": [-57.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"rightLegLower": {
+					"rotation": {
+						"0.0": [82.5, 0, 0],
+						"0.18": [82.5, 0, 0],
+						"0.32": [0, 0, 0]
+					}
+				},
+				"leftLeg": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": {
+						"0.0": [-45, 0, 0],
+						"0.18": [-57.5, 0, 0],
+						"0.32": [0, 0, 0.01]
+					}
+				},
+				"leftLegLower": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.18": [82.5, 0, 0],
+						"0.32": [0, 0, 0]
 					}
 				}
 			}

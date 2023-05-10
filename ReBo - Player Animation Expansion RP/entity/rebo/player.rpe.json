@@ -19,13 +19,20 @@
       "scripts": {
         "scale": "0.9375",
         "initialize": [
-          "v.is_holding_right = 0.0;",
+          "v.inactive_timer = 5.0;",
+          "v.is_idling = true;",
+          "v.jump_side = 'right';",
+          "v.sneak_side = 'right';",
+
+
           "v.is_blinking = 0.0;",
           "v.last_blink_time = 0.0;",
           "v.hand_bob = 0.0;"
         ],
         "pre_animation": [
           "v.random_side = math.random_integer(1, 2) == 1 ? 'right' : 'left';",
+
+
           "v.helmet_layer_visible = 1.0;",
           "v.leg_layer_visible = 1.0;",
           "v.boot_layer_visible = 1.0;",
@@ -43,21 +50,29 @@
         ]
       },
       "animations": {
-        "a.walk.right": "animation.custom.player.walk.right",
-        "a.walk.left": "animation.custom.player.walk.left",
-        "a.sprint.right": "animation.custom.player.sprint.right",
-        "a.sprint.left": "animation.custom.player.sprint.left",
-        "a.punch.right": "animation.custom.player.punch.right",
-        "a.punch.left": "animation.custom.player.punch.left",
-        "a.sneak": "animation.custom.player.sneak",
+        "a.walk.right": "animation.rebo.player.walk.right",
+        "a.walk.left": "animation.rebo.player.walk.left",
+        "a.sprint.right": "animation.rebo.player.sprint.right",
+        "a.sprint.left": "animation.rebo.player.sprint.left",
+        "a.punch.right": "animation.rebo.player.punch.right",
+        "a.punch.left": "animation.rebo.player.punch.left",
+        "a.sneak.right": "animation.rebo.player.sneak.right",
+        "a.sneak.left": "animation.rebo.player.sneak.left",
+        "a.jump.lift.right": "animation.rebo.player.jump.lift.right",
+        "a.jump.lift.left": "animation.rebo.player.jump.lift.left",
+        "a.jump.fall.right": "animation.rebo.player.jump.fall.right",
+        "a.jump.fall.left": "animation.rebo.player.jump.fall.left",
+        "a.jump.land.right": "animation.rebo.player.jump.land.right",
+        "a.jump.land.left": "animation.rebo.player.jump.land.left",
         "a.look_at_target": "controller.animation.humanoid.look_at_target",
 
-        "ac.punch": "controller.animation.custom.player.punch",
-        "ac.sneak": "controller.animation.custom.player.sneak",
-        "ac.move": "controller.animation.custom.player.move",
-        "ac.move.walk": "controller.animation.custom.player.move.walk",
-        "ac.move.sprint": "controller.animation.custom.player.move.sprint",
-        "ac.root": "controller.animation.custom.player.root"
+        "ac.jump": "controller.animation.rebo.player.jump",
+        "ac.punch": "controller.animation.rebo.player.punch",
+        "ac.sneak": "controller.animation.rebo.player.sneak",
+        "ac.move.ground": "controller.animation.rebo.player.move.ground",
+        "ac.move.walk": "controller.animation.rebo.player.move.walk",
+        "ac.move.sprint": "controller.animation.rebo.player.move.sprint",
+        "ac.root": "controller.animation.rebo.player.root"
 
 
         
