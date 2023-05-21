@@ -2,19 +2,78 @@
     "format_version": "1.10.0",
     "animation_controllers": {
         "controller.animation.rebo.player.root": {
-            "initial_state": "default",
+            "initial_state": "first_person",
             "states": {
-                "default": {
+                "first_person" : {
+					"animations" : [
+						{ "first_person_swap_item": "!q.blocking" },
+						{ "first_person_shield_block": "q.blocking" },
+						{ "first_person_attack_controller" : "variable.attack_time > 0.0f && q.get_equipped_item_name != 'filled_map'" },
+						"first_person_base_pose",
+						{ "first_person_empty_hand" : "q.get_equipped_item_name(0, 1) != 'filled_map'" },
+						{ "first_person_walk" : "variable.bob_animation" },
+						{ "first_person_map_controller" : "(q.get_equipped_item_name(0, 1) == 'filled_map' || q.get_equipped_item_name('off_hand') == 'filled_map')" },
+						{ "first_person_crossbow_equipped": "q.get_equipped_item_name == 'crossbow' && (variable.item_use_normalized > 0 && variable.item_use_normalized < 1.0)" },
+						{ "first_person_breathing_bob": "variable.attack_time <= 0.0" }
+					],
+					"transitions" : [
+						{ "paperdoll" : "variable.is_paperdoll" },
+						{ "map_player" : "variable.map_face_icon" },
+						{ "third_person" : "!variable.is_first_person" }
+					]
+				},
+				"map_player" : {
+					"transitions" : [
+						{ "paperdoll" : "variable.is_paperdoll" },
+						{ "first_person" : "variable.is_first_person" },
+						{ "third_person" : "!variable.map_face_icon && !variable.is_first_person" }
+					]
+				},
+				"paperdoll" : {
+					"animations" : [ "humanoid_base_pose", "look_at_target_ui", "cape" ],
+					"transitions" : [
+						{ "first_person" : "!variable.is_paperdoll && variable.is_first_person" },
+						{ "map_player" : "variable.map_face_icon" },
+						{ "third_person" : "!variable.is_paperdoll && !variable.is_first_person" }
+					]
+				},
+                "third_person": {
                     "animations": [
-                        {"ac.move.ground": "q.is_on_ground"},
-                        "a.look_at_target",
+                        {"ac.move.ground": "q.is_on_ground && !q.is_in_water"},
+						{ "a.look_at_target" : "!q.is_sleeping && !q.is_emoting" },
+						{ "ac.sneak" : "q.is_sneaking && !q.is_sleeping" },
                         "ac.jump",
-                        "ac.sneak",
-                        "ac.punch"
-                    ]
+                        "ac.punch",
+
+
+						"cape",
+						{ "riding.arms" : "q.is_riding" },
+						{ "riding.legs" : "q.is_riding" },
+						"holding",
+						{ "brandish_spear" : "variable.is_brandishing_spear" },
+						{ "holding_spyglass": "variable.is_holding_spyglass" },
+						{ "charging" : "q.is_charging" },
+						{ "bob": "!variable.is_holding_spyglass && !variable.is_tooting_goat_horn" },
+						{ "damage_nearby_mobs" : "variable.damage_nearby_mobs" },
+						{ "swimming" : "variable.swim_amount > 0.0" },
+						{ "swimming.legs" : "variable.swim_amount > 0.0" },
+						{ "use_item_progress": "( variable.use_item_interval_progress > 0.0 ) || ( variable.use_item_startup_progress > 0.0 ) && !variable.is_brandishing_spear && !variable.is_holding_spyglass && !variable.is_tooting_goat_horn && !q.is_item_name_any('slot.weapon.mainhand', 'minecraft:bow')" },
+						{ "sleeping" : "q.is_sleeping && q.is_alive" },
+						{ "shield_block_main_hand" : "q.blocking && q.get_equipped_item_name('off_hand') != 'shield' && q.get_equipped_item_name == 'shield'" },
+						{ "shield_block_off_hand" : "q.blocking && q.get_equipped_item_name('off_hand') == 'shield'" },
+						{ "crossbow_controller" : "q.get_equipped_item_name == 'crossbow'" },
+						{ "third_person_bow_equipped" : "q.get_equipped_item_name == 'bow' && (variable.item_use_normalized > 0 && variable.item_use_normalized < 1.0)" },
+						{ "tooting_goat_horn": "variable.is_tooting_goat_horn" }
+                    ],
+					"transitions" : [
+						{ "paperdoll" : "variable.is_paperdoll" },
+						{ "first_person" : "variable.is_first_person" },
+						{ "map_player" : "variable.map_face_icon" }
+					]
                 }
             }
         },
+
         "controller.animation.rebo.player.sneak": {
             "initial_state": "default",
             "states": {
@@ -67,7 +126,7 @@
                     "blend_transition": 0.2,
                     "transitions": [
                         { "lift": "q.is_jumping"},
-                        { "fall": "q.vertical_speed < 0"}
+                        { "fall": "q.vertical_speed <= 0"}
                     ]
                 },
                 "lift": {
@@ -77,7 +136,7 @@
                     ],
                     "blend_transition": 1.0,
                     "transitions": [
-                        { "fall": "q.vertical_speed < 0"}
+                        { "fall": "q.vertical_speed <= 0"}
                     ]
                 },
                 "fall": {
